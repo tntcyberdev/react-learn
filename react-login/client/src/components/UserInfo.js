@@ -40,8 +40,6 @@ function UserInfo() {
                 age,
                 nationality,
             }));
-
-            alert("Profile updated successfully!");
             setIsEditing(false);
         } catch (err) {
             alert("Failed to update profile!");

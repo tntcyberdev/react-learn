@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Register({ setIsAuthenticated }) {
+function Register({ onLogin  }) {
     const [formData, setFormData] = useState({ username: "", password: "", age: "", nationality: "" });
     const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ function Register({ setIsAuthenticated }) {
             localStorage.setItem("token", loginResponse.data.token);
 
             // Update authentication state and redirect to profile page
-            setIsAuthenticated(true);
+            onLogin();            
             navigate("/userinfo");
         } catch (err) {
             alert("Registration failed!");

@@ -19,7 +19,7 @@ function Navbar({ isAuthenticated, onLogout }) {
                 </>
             ) : (
                 <>
-                    <Link to="/" style={{ marginRight: "10px" }}>Login</Link>
+                    <Link to="/login" style={{ marginRight: "10px" }}>Login</Link>
                     <Link to="/register">Register</Link>
                 </>
             )}
