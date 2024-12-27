@@ -48,7 +48,7 @@ function UserInfo() {
 
     return (
         <div>
-            <h1>Hello {userInfo.username}</h1>
+            <h1>Hello</h1>
             {userInfo ? (
                 <div>
                     {isEditing ? (

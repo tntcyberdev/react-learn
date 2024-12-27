@@ -106,16 +106,10 @@ const TodoList = () => {
                     <li key={todo.id} className="list-group-item">
                         <TodoShow
                             todo={todo}
-                            onEdit={() => setEditingTodo(todo)}
+                            onUpdate={(id, title, completed) => updateTodo(id, title, completed)}
                             onDelete={() => deleteTodo(todo.id)}
                         />
-                        {editingTodo?.id === todo.id && (
-                            <TodoCreate
-                                todo={todo}
-                                onSave={(title, completed) => updateTodo(todo.id, title, completed)}
-                                onCancel={() => setEditingTodo(null)}
-                            />
-                        )}
+                       
                     </li>
                 ))}
             </ul>

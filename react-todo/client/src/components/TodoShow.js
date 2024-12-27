@@ -1,23 +1,24 @@
 import TodoEdit from './TodoEdit';
 import { useState } from 'react';
 
-const TodoShow = ({todo, removeTodo, changeTodo}) => {
+const TodoShow = ({todo, onDelete, onUpdate}) => {
     const [showEdit, setShowEdit] = useState(false);
     
     const handleEdit = () => {
       setShowEdit(true);
     }
     const handleDelete = () => {
-      removeTodo(todo.id);
+      onDelete(todo.id);
     }
     const handleCompletionChange = () => {
-      changeTodo(todo.id, todo.title, !todo.completed);
+      onUpdate(todo.id, todo.title, !todo.completed);
     }
     const handleSubmit = (id, title) => {
-        changeTodo(id, title);
+        onUpdate(id, title, todo.completed);
         setShowEdit(false);
     }
 
+    // If showEdit is true, render the TodoEdit component (Save button)
     if (showEdit) {
       return (
         
