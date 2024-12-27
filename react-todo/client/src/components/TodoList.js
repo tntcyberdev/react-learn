@@ -1,6 +1,6 @@
 import TodoShow from "./TodoShow";
 
-const TodoList = ({todos, removeTodo, changeTodo}) => {
+const TodoList = ({ todos, removeTodo, changeTodo }) => {
     const renderedTodos = todos.map((todo) => {
         return (
             <TodoShow
@@ -12,7 +12,9 @@ const TodoList = ({todos, removeTodo, changeTodo}) => {
         );
     });
 
-    return <ul className="todo-list">{renderedTodos}</ul>;
+    return (
+        <ul className="todo-list">{renderedTodos}</ul>
+    );
 };
 
 export default TodoList;

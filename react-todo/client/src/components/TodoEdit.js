@@ -8,16 +8,14 @@ const TodoEdit = ({todo, onSubmit}) => {
     }
 
     const handleSubmit = (e) => {
-        console.log('Debug submitting SAVE', todo.title); //Debugging
-
         e.preventDefault();
         onSubmit(todo.id, title);
     }
 
     return (
-        <form className ="todo-edit" onSubmit={handleSubmit}>
-            <input type="text" value={title} onChange={handleChange} />
-            <button type="submit">SAVE</button>
+        <form className ="d-flex gap-2" onSubmit={handleSubmit}>
+            <input type="text" value={title} onChange={handleChange} className='form-control' placeholder='Edit todo...'/>
+            <button type="submit" className='btn btn-primary'>SAVE</button>
         </form>
     )
   };

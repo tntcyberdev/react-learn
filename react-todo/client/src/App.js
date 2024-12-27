@@ -36,11 +36,11 @@ function App() {
 
   return (
     <main className="main">
-      <h1>
-        React Todo <span>Streamline Your Day, the React Way!</span>
-      </h1>
-      <TodoList todos={todos} removeTodo={removeTodo} changeTodo={changeTodo}/>
-      <TodoCreate createTodo={createTodo} />
+      <div class="container">
+        <h1>React Todo</h1>
+        <TodoList todos={todos} removeTodo={removeTodo} changeTodo={changeTodo}/>
+        <TodoCreate createTodo={createTodo} />
+      </div>
     </main>
   );
 };
