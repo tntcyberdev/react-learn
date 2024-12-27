@@ -1,49 +1,55 @@
-
-import React, { useState } from 'react';
-import './App.css';
-import TodoList from './components/TodoList';
-import TodoCreate from './components/TodoCreate';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import "./App.css";
+import TodoList from "./components/TodoList";
+import Home from "./components/Home";
+import Navbar from "./components/Navbar";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import UserInfo from "./components/UserInfo";
 
 function App() {
-  
-  const [todos, setTodos] = useState([]);
+  // User Auth
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("token")
+  );
 
-  const createTodo = (title) => {
-    const newTodo = {
-      id: crypto.randomUUID(),
-      title: title,
-      completed: false
-    };
-    const updatedTodos = [...todos, newTodo];
-    setTodos(updatedTodos);  
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setIsAuthenticated(false);
   };
-  
-  const removeTodo = (id) => {
-    const updatedTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(updatedTodos);
-  }
 
-  const changeTodo = (id, title, completed = false) => {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, title, completed };
-      }
-      return todo;
-    });
-  
-    setTodos(updatedTodos);
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+    // Add any additional login logic here
   };
 
   return (
     <main className="main">
       <div class="container">
-        <h1>React Todo</h1>
-        <TodoList todos={todos} removeTodo={removeTodo} changeTodo={changeTodo}/>
-        <TodoCreate createTodo={createTodo} />
+
+        <Router>
+          <Navbar isAuthenticated={isAuthenticated} onLogout={handleLogout} />
+          <div style={{ padding: "20px" }}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login onLogin={handleLogin} />} />
+              <Route
+                path="/register"
+                element={<Register onLogin={handleLogin} />}
+              />
+              <Route path="/userinfo" element={<UserInfo />} />
+              <Route path="/todos" element={isAuthenticated ? 
+                <TodoList /> : <Navigate to="/login" />} />
+            </Routes>
+          </div>
+        </Router>
+
       </div>
     </main>
   );
-};
-
+}
 
 export default App;
+

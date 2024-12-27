@@ -20,15 +20,15 @@ const TodoShow = ({todo, removeTodo, changeTodo}) => {
 
     if (showEdit) {
       return (
-        <div className="card mb-2">
+        
           <div className="card-body">
             <TodoEdit todo={todo} onSubmit={handleSubmit}/>
             </div>
-        </div>
+        
       );
     }
     return (
-      <div className="card mb-2">
+      
           <div className="card-body d-flex align-items-center justify-content-between">
               <div className="d-flex align-items-center gap-2">
                   <div className="form-check m-0">
@@ -62,7 +62,7 @@ const TodoShow = ({todo, removeTodo, changeTodo}) => {
                   </button>
               </div>
           </div>
-      </div>
+    
   );
 };
 
